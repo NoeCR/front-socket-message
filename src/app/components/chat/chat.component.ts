@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.elemento = document.getElementById('chat-mensajes');
     this.mensajesSubscription = this.chatService.getMessage('mensaje-nuevo').subscribe(
-      msg =>{
+      msg => {
         this.mensajes.push(msg);
         setTimeout(() => {
           this.elemento.scrollTop = this.elemento.scrollHeight;
@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (this.texto.trim().length === 0) {
       return;
     }
-    this.chatService.sendMessage('Noe CR', this.texto);
+    this.chatService.sendMessage(this.texto);
     this.texto = '';
   }
 

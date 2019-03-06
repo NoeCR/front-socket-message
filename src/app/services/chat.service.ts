@@ -10,9 +10,9 @@ export class ChatService {
     public wsService: WebsocketService
   ) { }
 
-  sendMessage(user: string, mensaje: string) {
+  sendMessage(mensaje: string) {
     const payload = {
-      de: user,
+      de: this.wsService.usuario.nombre,
       cuerpo: mensaje
     };
     this.wsService.emit('mensaje', payload);
@@ -20,5 +20,9 @@ export class ChatService {
 
   getMessage(event: string) {
     return this.wsService.listen(event);
+  }
+
+  getMessagesPrivate(){
+    return this.wsService.listen('mensaje-privado');
   }
 }
